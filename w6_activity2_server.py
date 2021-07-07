@@ -1,7 +1,3 @@
-
-# No other modules apart from 'socket', 'BeautifulSoup', 'requests' and 'datetime'
-# need to be imported as they aren't required to solve the assignment
-
 # Import required module/s
 import socket
 from bs4 import BeautifulSoup
@@ -31,8 +27,6 @@ def fetchWebsiteData(url_website):
 	
 	web_page_data = ''
 
-	##############	ADD YOUR CODE HERE	##############
-
 	page = requests.get(url_website)
 
 	soup = BeautifulSoup(page.content, 'html.parser')
@@ -45,10 +39,9 @@ def fetchWebsiteData(url_website):
 		name = j.find_all('td')
 		web_page_data.append(name)		
 
-	##################################################
-
 	return web_page_data
 
+############################################################################################################################
 
 def fetchVaccineDoses(web_page_data):
 	"""Fetch the Vaccine Doses available from the Web-page data and provide Options to select the respective Dose.
@@ -72,8 +65,6 @@ def fetchVaccineDoses(web_page_data):
 	"""
 
 	vaccine_doses_dict = {}
-
-	##############	ADD YOUR CODE HERE	##############
 	
 	dose_list = []
 	for k in web_page_data:
@@ -93,11 +84,10 @@ def fetchVaccineDoses(web_page_data):
 		mydict = {z:dose_num}
 		vaccine_doses_dict = {**temp_dict,**mydict}
 		temp_dict = vaccine_doses_dict		
-	
-	##################################################
 
 	return vaccine_doses_dict
 
+############################################################################################################################
 
 def fetchAgeGroup(web_page_data, dose):
 	"""Fetch the Age Groups for whom Vaccination is available from the Web-page data for a given Dose
@@ -127,8 +117,6 @@ def fetchAgeGroup(web_page_data, dose):
 	"""
 
 	age_group_dict = {}
-
-	##############	ADD YOUR CODE HERE	##############
 	
 	age_list = []
 	for k in web_page_data:
@@ -153,10 +141,9 @@ def fetchAgeGroup(web_page_data, dose):
 		temp_dict = age_group_dict
 		num+=1		
 
-	##################################################
-
 	return age_group_dict
 
+############################################################################################################################
 
 def fetchStates(web_page_data, age_group, dose):
 	"""Fetch the States where Vaccination is available from the Web-page data for a given Dose and Age Group
@@ -189,8 +176,6 @@ def fetchStates(web_page_data, age_group, dose):
 	"""
 
 	states_dict = {}
-
-	##############	ADD YOUR CODE HERE	##############
 	
 	states_list = []
 	for k in web_page_data:
@@ -217,10 +202,9 @@ def fetchStates(web_page_data, age_group, dose):
 		temp_dict = states_dict
 		num+=1	
 
-	##################################################
-
 	return states_dict
 
+############################################################################################################################
 
 def fetchDistricts(web_page_data, state, age_group, dose):
 	"""Fetch the District where Vaccination is available from the Web-page data for a given State, Dose and Age Group
@@ -254,8 +238,6 @@ def fetchDistricts(web_page_data, state, age_group, dose):
 	"""
 
 	districts_dict = {}
-
-	##############	ADD YOUR CODE HERE	##############
 	
 	dist_list = []
 	for k in web_page_data:
@@ -284,10 +266,9 @@ def fetchDistricts(web_page_data, state, age_group, dose):
 		temp_dict = districts_dict
 		num+=1		
 
-	##################################################
-
 	return districts_dict
 
+############################################################################################################################
 
 def fetchHospitalVaccineNames(web_page_data, district, state, age_group, dose):
 	"""Fetch the Hospital and the Vaccine Names from the Web-page data available for a given District, State, Dose and Age Group
@@ -331,8 +312,6 @@ def fetchHospitalVaccineNames(web_page_data, district, state, age_group, dose):
 	"""
 	
 	hospital_vaccine_names_dict = {}
-
-	##############	ADD YOUR CODE HERE	##############
 	
 	hospital_list = []
 	for k in web_page_data:
@@ -365,11 +344,10 @@ def fetchHospitalVaccineNames(web_page_data, district, state, age_group, dose):
 		hospital_vaccine_names_dict = {**temp_dict,**mydict}
 		temp_dict = hospital_vaccine_names_dict
 		num+=1								
-	
-	##################################################
 
 	return hospital_vaccine_names_dict
 
+############################################################################################################################
 
 def fetchVaccineSlots(web_page_data, hospital_name, district, state, age_group, dose):
 	"""Fetch the Dates and Slots available on those dates from the Web-page data available for a given Hospital Name, District, State, Dose and Age Group
@@ -414,8 +392,6 @@ def fetchVaccineSlots(web_page_data, hospital_name, district, state, age_group, 
 	"""
 
 	vaccine_slots = {}
-
-	##############	ADD YOUR CODE HERE	##############
 	
 	slot_list = []
 	for k in web_page_data:
@@ -465,12 +441,10 @@ def fetchVaccineSlots(web_page_data, hospital_name, district, state, age_group, 
 		vaccine_slots = {**temp_dict,**mydict}
 		temp_dict = vaccine_slots
 		num+=1	
-		
-
-	##################################################
 
 	return vaccine_slots
 
+############################################################################################################################
 
 def openConnection():
 	"""Opens a socket connection on the HOST with the PORT address.
@@ -486,7 +460,6 @@ def openConnection():
 	client_socket = None
 	client_addr = None
 
-	##############	ADD YOUR CODE HERE	##############
 	
 	ADDR =(HOST,PORT)
 	server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -496,11 +469,10 @@ def openConnection():
 
 	client_socket, client_addr = server.accept()
 	print("Client is connected at: ",ADDR)	
-
-	##################################################
 	
 	return client_socket, client_addr
 
+############################################################################################################################
 
 def startCommunication(client_conn, client_addr, web_page_data):
 	"""Starts the communication channel with the connected Client for scheduling an Appointment for Vaccination.
@@ -514,8 +486,6 @@ def startCommunication(client_conn, client_addr, web_page_data):
 	web_page_data : bs4.element.ResultSet
 		All rows of Tabular data fetched from a website excluding the table headers
 	"""
-
-	##############	ADD YOUR CODE HERE	##############
 
 	invalid_count = 0
 	while True:
@@ -921,6 +891,7 @@ $$ |  $$\ $$ |  $$ |$$$  / \$$$ |$$ |$$ |  $$ |      $$ |  $$\ $$ |  $$ |$$  __$
 					print("Notifying the client and closing the connection!")
 					stopCommunication(client_conn)
 
+############################################################################################################################
 
 def stopCommunication(client_conn):
 	"""Stops or Closes the communication channel of the Client with a message.
@@ -930,21 +901,12 @@ def stopCommunication(client_conn):
 	client_conn : socket
 		Object of socket class for the Client connected to Server and communicate further with it
 	"""
-
-	##############	ADD YOUR CODE HERE	##############
 	
 	client_conn.send(bytes("\n<<< See ya! Visit again :)",'utf-8'))
 	client_conn.close()
 	exit()
 
-	##################################################
-
-
-################# ADD UTILITY FUNCTIONS HERE #################
-## You can define any utility functions for your code.      ##
-## Please add proper comments to ensure that your code is   ##
-## readable and easy to understand.                         ##
-##############################################################
+############################################################################################################################
 
 def checkdate(date_given):
 	"""
@@ -962,6 +924,8 @@ def checkdate(date_given):
 		client_conn.send(bytes("\n<<<< Invalid Date provided of First Vaccination Dose: ",'utf-8'))
 		return False
 
+############################################################################################################################
+
 def calc_weeks(first_date):
 	"""
 	Calculates number of weeks between first does and today
@@ -978,7 +942,7 @@ def calc_weeks(first_date):
 	
 	return no_of_week
 
-##############################################################
+############################################################################################################################
 
 
 if __name__ == '__main__':

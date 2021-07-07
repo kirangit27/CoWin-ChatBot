@@ -5,10 +5,6 @@ import ast
 import colorama
 colorama.init()
 
-# NOTE: You are free to use any module(s) required for better representation of the data received from the Server.
-
-# NOTE: DO NOT modify the connectToServer() and the 'if' conditions in main() function.
-# 		Although you can make modifications to main() where you wish to call formatRecvdData() function.
 
 def connectToServer(HOST, PORT):
 	"""Create a socket connection with the Server and connect to it.
@@ -41,8 +37,6 @@ def formatRecvdData(data_recvd):
 	data_recvd : str
 		Data received from the Server about scheduling of Vaccination Appointment
 	"""
-
-	##############	ADD YOUR CODE HERE	##############
 	
 
 	if '{' in data_recvd:
@@ -66,7 +60,6 @@ def formatRecvdData(data_recvd):
 	else:
 		print(colorama.Fore.LIGHTMAGENTA_EX,data_recvd)
 	
-	##################################################
 
 
 if __name__ == '__main__':
@@ -74,7 +67,6 @@ if __name__ == '__main__':
 	"""
 
 	# Define constants for IP and Port address of the Server to connect to.
-	# NOTE: DO NOT modify the values of these two constants
 	HOST = '127.0.0.1'
 	PORT = 24680
 
